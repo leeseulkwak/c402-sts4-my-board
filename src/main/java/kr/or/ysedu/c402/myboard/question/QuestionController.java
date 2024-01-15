@@ -22,5 +22,9 @@ public class QuestionController {
 		return "question_list";
 	}
 	
+	@GetMapping("/")
+	public String root() {
+		return "redirect:/question/list";
+	}
 	
 }
