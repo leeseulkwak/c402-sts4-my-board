@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import kr.or.ysedu.c402.myboard.question.Question;
 import lombok.Getter;
 import lombok.Setter;
 
