@@ -14,18 +14,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 import kr.or.ysedu.c402.myboard.answer.Answer;
 import kr.or.ysedu.c402.myboard.answer.AnswerRepository;
 import kr.or.ysedu.c402.myboard.question.QuestionRepository;
+import kr.or.ysedu.c402.myboard.question.QuestionService;
 
 @SpringBootTest
 class MyBoardApplicationTests {
 
 	@Autowired
 	//의존성 주입(DI)
-	private QuestionRepository questionRepository;
+	 private QuestionService questionService;
 	
     @Autowired
     private AnswerRepository answerRepository;
 
-	@Test
+	
 //1. 게시글 생성
 //	void testJpa() {        
 //        Question q1 = new Question();
@@ -110,11 +111,21 @@ class MyBoardApplicationTests {
 //        a.setCreateDate(LocalDateTime.now());
 //        this.answerRepository.save(a);
 //	}
-// 10.답변 데이터 조회하기
-	void testJpa() {
-		Optional<Answer> oa=this.answerRepository.findById(1);
-		assertTrue(oa.isPresent());
-		Answer a=oa.get();
-		assertEquals(2, a.getQuestion().getId());
-	}
+//// 10.답변 데이터 조회하기
+//	void testJpa() {
+//		Optional<Answer> oa=this.answerRepository.findById(1);
+//		assertTrue(oa.isPresent());
+//		Answer a=oa.get();
+//		assertEquals(2, a.getQuestion().getId());
+//	}
+	
+//	데이터 만들기
+    @Test
+    void testJpa() {
+        for (int i = 1; i <= 100; i++) {
+            String subject = String.format("테스트 데이터입니다:[%03d]", i);
+            String content = "내용무";
+            this.questionService.create(subject, content);
+        }
+    }
 }
