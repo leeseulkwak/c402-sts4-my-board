@@ -1,9 +1,11 @@
 package kr.or.ysedu.c402.myboard.answer;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import kr.or.ysedu.c402.myboard.DataNotFoundException;
 import kr.or.ysedu.c402.myboard.question.Question;
 import kr.or.ysedu.c402.myboard.user.SiteUser;
 import lombok.RequiredArgsConstructor;
@@ -24,4 +26,24 @@ public class AnswerService {
 		
 		return answer;
 	}
+	
+	//답변을 조회
+	 public Answer getAnswer(Integer id) {
+	        Optional<Answer> answer = this.answerRepository.findById(id);
+	        if (answer.isPresent()) {
+	            return answer.get();
+	        } else {
+	            throw new DataNotFoundException("answer not found");
+	        }
+	    }
+	 //답변을 수정
+	 public void modify(Answer answer, String content) {
+	        answer.setContent(content);
+	        answer.setModifyDate(LocalDateTime.now());
+	        this.answerRepository.save(answer);
+	    }
+	 
+	 public void delete(Answer answer) {
+		 this.answerRepository.delete(answer);
+	 }
 }
