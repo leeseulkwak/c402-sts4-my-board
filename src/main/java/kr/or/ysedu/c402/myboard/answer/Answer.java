@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import kr.or.ysedu.c402.myboard.question.Question;
+import kr.or.ysedu.c402.myboard.user.SiteUser;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,5 +30,8 @@ public class Answer {
     //Answer(답변) 엔티티의 question 속성과 Question(질문) 엔티티가 서로 연결
     //외래키 관계가 설정
     private Question question;  
+    
+    @ManyToOne
+    private SiteUser author;
 
 }

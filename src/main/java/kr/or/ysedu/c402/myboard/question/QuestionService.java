@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import kr.or.ysedu.c402.myboard.DataNotFoundException;
+import kr.or.ysedu.c402.myboard.user.SiteUser;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -34,11 +35,12 @@ public class QuestionService {
     }
     
    //제목과 내용을 입력 받아 이를 질문으로 저장하는 메서드
-   public void create(String subject, String content) {
+   public void create(String subject, String content, SiteUser user) {
 	   Question q=new Question();
 	   q.setSubject(subject);
 	   q.setContent(content);
 	   q.setCreateDate(LocalDateTime.now());
+	   q.setAuthor(user);
 	   this.questionRepository.save(q);
    }
    
